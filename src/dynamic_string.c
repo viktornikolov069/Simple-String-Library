@@ -1,7 +1,7 @@
 #include "dynamic_string.h"
 
 #include <string.h>
-
+#include <stdio.h>
 
 size_t get_size(const DynamicString_t *self) {
     return self->size;
@@ -9,6 +9,18 @@ size_t get_size(const DynamicString_t *self) {
 
 const char* get_str_immutable(const DynamicString_t *self) {
     return self->data;
+}
+
+DynamicString_t* copy(const DynamicString_t *self) {
+    DynamicString_t* copyStr = (DynamicString_t*)malloc(sizeof(DynamicString_t));
+    memcpy(copyStr, self, sizeof(DynamicString_t));
+    copyStr->self = copyStr;
+    copyStr->data = (char*)calloc(self->size, sizeof(char));
+    
+    memcpy(copyStr->data, self->data, self->size);
+    copyStr->data[self->size] = '\0';
+
+    return copyStr;
 }
 
 void dest_str(const DynamicString_t *str) {
@@ -29,6 +41,7 @@ DynamicString_t* InitDynamicString(const char *str) {
     newStr->getSize = get_size;
     newStr->getStrImmutable = get_str_immutable;
     newStr->destStr = dest_str;
+    newStr->copy = copy;
 
     return newStr;
 }

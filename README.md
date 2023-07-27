@@ -17,12 +17,15 @@ StaticString:
 
 
 **TO DO**
-* [ ] Add a copy function
+* [x] Add a copy function
 * [ ] Add a slice function
 * [ ] Add an append function
 * [ ] Possibly add a reverse function (Returns the data in reverse order)
 * [ ] Create a shared library
 * [ ] Create a static library
+* [ ] Add unit tests. Try doing them in python.
+* [ ] Add comments and documentation. 
+* [ ] Add input verification in the functions. 
 
 ## Notes
 

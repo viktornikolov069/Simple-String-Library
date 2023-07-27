@@ -4,32 +4,6 @@
 #include "dynamic_string.h"
 
 
-#define SELF_DYNAMIC const struct DynamicString*
-#define SELF_STATIC const struct StaticString*
-
-typedef struct StaticString {
-
-    // we need a constructor
-    // we need a destructor
-    // we need a this pointer
-    // make a function that returns the size
-    // make append function
-    // make slice function
-    // make reverse function
-    // create the string as a shared lib and as a static lib
-
-    
-    struct StaticString* self;
-    char* data;
-    size_t size;
-
-    size_t (*getSize)(SELF_STATIC);
-    const char* (*getStrImmutable)(SELF_STATIC);
-    void (*destStr)(const struct DynamicString*);
-
-} StaticString_t;
-
-
 int main() {
 
     DynamicString_t *str = InitDynamicString("hello12345 4");
@@ -45,5 +19,25 @@ int main() {
     
     printf("str data = %s\n", str->getStrImmutable(str->self));
     printf("str size = %ld\n", str->getSize(str->self));
+
+    puts("\nCreate strCopy and copy data from str to strCopy\n");
+    DynamicString_t *strCopy = str->copy(NULL);
+
+    printf("Address of str = %p\n", str);
+    printf("Address of strCopy = %p\n", strCopy);
+    printf("Address of strCopy.data = %p\n", strCopy->data);
+    printf("Address of str.data = %p\n", str->data);
+    printf("difference between str.data and strCopy.data = %ld\n", str->data - strCopy->data);
+
+    printf("str size = %ld\n", strlen(strCopy->data));
+    printf("strCopy data = %s\n", strCopy->getStrImmutable(strCopy->self));
+    printf("strCopy size = %ld\n", sizeof(strCopy));
+
+    puts("Print memory\n");
+
+    printf("str->destStr = %p\n", str->destStr);
+    printf("strCopy->destStr = %p\n", strCopy->destStr);
+
     str->destStr(str);
+    strCopy->destStr(strCopy);
 }
