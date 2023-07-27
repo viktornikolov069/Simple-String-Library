@@ -11,6 +11,13 @@
 *.exe
 *.out
 
+# Preprocessor files
+*.i
+
+# Intermediate assembly files
+*.s
+*.asm
+
 # Compiled C code (if using gcc)
 *.gch
 

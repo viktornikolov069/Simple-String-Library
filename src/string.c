@@ -6,7 +6,7 @@
 
 int main() {
 
-    DynamicString_t *str = InitDynamicString("hello12345 4");
+    DynamicString_t *str = init_dynamic_string("hello12345 4");
     printf("str size = %ld\n", strlen(str->data));
     
     if (strcmp(str->data, "") == 0) {
@@ -17,27 +17,21 @@ int main() {
         printf("The string does not have a null terminator at the end.\n");
     }
     
-    printf("str data = %s\n", str->getStrImmutable(str->self));
-    printf("str size = %ld\n", str->getSize(str->self));
+    printf("str data = %s\n", str->get_str_immutable(str->self));
+    printf("str size = %ld\n", str->get_size(str->self));
 
-    puts("\nCreate strCopy and copy data from str to strCopy\n");
-    DynamicString_t *strCopy = str->copy(NULL);
+    puts("\nCreate str_copy and copy data from str to str_copy\n");
+    DynamicString_t *str_copy = str->copy(str);
 
-    printf("Address of str = %p\n", str);
-    printf("Address of strCopy = %p\n", strCopy);
-    printf("Address of strCopy.data = %p\n", strCopy->data);
-    printf("Address of str.data = %p\n", str->data);
-    printf("difference between str.data and strCopy.data = %ld\n", str->data - strCopy->data);
+    printf("&str = %p\n", str);
+    printf("&str_copy = %p\n", str_copy);
 
-    printf("str size = %ld\n", strlen(strCopy->data));
-    printf("strCopy data = %s\n", strCopy->getStrImmutable(strCopy->self));
-    printf("strCopy size = %ld\n", sizeof(strCopy));
+    printf("str->self = %p\n", str->self);
+    printf("str_copy->sel = %p\n", str_copy->self);
 
-    puts("Print memory\n");
+    printf("str_copy->data = %s\n", str_copy->get_str_immutable(str->self));
+    printf("str_copy->size = %ld\n", str_copy->get_size(str->self));
 
-    printf("str->destStr = %p\n", str->destStr);
-    printf("strCopy->destStr = %p\n", strCopy->destStr);
-
-    str->destStr(str);
-    strCopy->destStr(strCopy);
+    str->dest_str(str);
+    str_copy->dest_str(str_copy);
 }

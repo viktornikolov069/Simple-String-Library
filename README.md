@@ -29,4 +29,5 @@ StaticString:
 
 ## Notes
 
-This library even though made in 'C' uses an object oriented approach or at least that is what I'm attempting to do.
+* This library even though made in 'C' uses an object oriented approach or at least that is what I'm attempting to do.
+* Naming convention is snake_case.
