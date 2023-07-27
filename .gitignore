@@ -1,0 +1,28 @@
+# Compiled object files
+*.o
+
+# Compiled dynamic libraries
+*.so
+
+# Compiled static libraries
+*.a
+
+# Executable binaries
+*.exe
+*.out
+
+# Compiled C code (if using gcc)
+*.gch
+
+# Visual Studio Code specific files
+.vscode/
+
+# Other generated files
+Makefile
+*.vs
+*.suo
+*.user
+*.sln
+*.dll
+*.lib
+
