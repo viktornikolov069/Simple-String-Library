@@ -10,7 +10,7 @@
 # Executable binaries
 *.exe
 *.out
-
+/binaries
 # Preprocessor files
 *.i
 
