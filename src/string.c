@@ -28,7 +28,7 @@ int main() {
 
     printf("str->self = %p\n", str->self);
     printf("str_copy->sel = %p\n", str_copy->self);
-
+    
     printf("str_copy->data = %s\n", str_copy->get_str_immutable(str->self));
     printf("str_copy->size = %ld\n", str_copy->get_size(str->self));
 

@@ -11,9 +11,11 @@ typedef struct DynamicString {
     struct DynamicString* self;
     char* data;
     size_t size;
+    size_t alloc;
 
     size_t (*get_size)(SELF_CONST);
     const char* (*get_str_immutable)(SELF_CONST);
+    char* (*get_str)(SELF_CONST);
     void (*dest_str)(SELF);
     struct DynamicString*(*copy)(SELF_CONST);
 
@@ -22,6 +24,8 @@ typedef struct DynamicString {
 size_t get_size_private(SELF_CONST);
 
 const char* get_str_immutable_private(SELF_CONST);
+
+char* get_str_private(SELF_CONST);
 
 void dest_str_private(SELF);
 
