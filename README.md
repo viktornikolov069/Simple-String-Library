@@ -2,7 +2,7 @@
 
 ## *Viktor Nikolov*
 
-This library contains implementations of dynamic and static string structures that can be included in other programs. Currently the library is in a work in progress state.
+This library contains a simple implementation of a dynamic string that can be included in other programs. Currently the library is in a work in progress state.
 
 
 The following **functionality** is completed:
@@ -12,9 +12,6 @@ DynamicString:
 * [x] getStrImmutable - returns a const version of the data inside the string. 
 * [x] destStr - frees the heap allocated memory
    
-StaticString:
-* [x] Under development
-
 
 **TO DO**
 * [x] Add a copy function
