@@ -6,6 +6,10 @@ size_t get_size_private(const DynamicString_t *self) {
     return self->size;
 }
 
+size_t get_alloc_private(const DynamicString_t *self) {
+    return self->alloc;
+}
+
 const char* get_str_immutable_private(const DynamicString_t *self) {
     return self->data;
 }
@@ -36,9 +40,29 @@ void dest_str_private(DynamicString_t *str) {
     }
     free(str->data);
     free(str->self);
+
+    //Point all freed pointers to NULL
     str->data = NULL;
     str->self = NULL;
     str = NULL;
+}
+
+void append_str_private(DynamicString_t *self ,const char* str) {
+    size_t str_size = strlen(str);
+    
+    //Reallocate the old data and adds space for the new data
+    self->data = realloc(self->data, self->size + str_size + 1);
+
+    //Copy the new data on the newly allocated space
+    //starting from the end of the old data.
+    memcpy(self->data + self->size, str, str_size);
+
+    //Update the size variables
+    self->alloc = self->size + str_size + 1;
+    self->size = self->size + str_size;
+
+    //Place null terminator at the end of data block 
+    self->data[self->size] = '\0';
 }
 
 DynamicString_t* init_dynamic_string(const char *str) {
@@ -47,7 +71,7 @@ DynamicString_t* init_dynamic_string(const char *str) {
     if (str != NULL) {
         new_str->self = new_str;
 
-        // Add one for the null terminator
+        //Add one for the null terminator
         new_str->alloc = strlen(str) + 1;
         new_str->size = strlen(str);
 
@@ -69,10 +93,12 @@ DynamicString_t* init_dynamic_string(const char *str) {
     //The idea is to simulate having member functions 
     //which isn't possible in C.
     new_str->get_size = get_size_private;
+    new_str->get_alloc = get_alloc_private;
     new_str->get_str_immutable = get_str_immutable_private;
     new_str->get_str = get_str_private;
     new_str->dest_str = dest_str_private;
     new_str->copy = copy_private;
+    new_str->append_str = append_str_private;
 
     return new_str;
 }

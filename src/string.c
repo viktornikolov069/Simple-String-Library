@@ -32,6 +32,20 @@ int main() {
     printf("str_copy->data = %s\n", str_copy->get_str_immutable(str->self));
     printf("str_copy->size = %ld\n", str_copy->get_size(str->self));
 
+    puts("Append a string\n");
+
+    str_copy->append_str(str_copy, "1234");
+    printf("str_copy->append = %s\n", str_copy->data);
+
+    str_copy->append_str(str_copy, "1234");
+    printf("str_copy->append = %s\n", str_copy->data);
+
+    str_copy->append_str(str_copy, "1234");
+
+    printf("str_copy->append = %s\n", str_copy->data);
+    printf("str_copy->size = %ld\n", str_copy->get_size(str_copy));
+    printf("str_copy->alloc = %ld\n", str_copy->get_alloc(str_copy));
+
     str->dest_str(str);
     str_copy->dest_str(str_copy);
 }

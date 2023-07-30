@@ -22,7 +22,8 @@ DynamicString:
 * [ ] Create a static library
 * [ ] Add unit tests. Try doing them in python.
 * [ ] Add comments and documentation. 
-* [ ] Add input verification in the functions. 
+* [ ] Add input verification in the functions.
+* [ ] Add NULL pointer checks where memory is allocated. 
 
 ## Notes
 
