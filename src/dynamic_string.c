@@ -2,6 +2,13 @@
 #include <string.h>
 #include <stdio.h>
 
+#define CHECK_ALLOC_RETURN_NULL(X) ({ if((X) == NULL) { \
+                                        fprintf(stderr, \
+                                        "Allocation Error ("__FILE__":%d)\n", __LINE__); \
+                                        return NULL;}})
+
+#define PRINT_LINE_ERROR fprintf(stderr, "Allocation Error ("__FILE__":%d)\n", __LINE__)
+
 size_t get_size_private(const DynamicString_t *self) {
     return self->size;
 }
@@ -19,7 +26,10 @@ char* get_str_private(const DynamicString_t *self) {
 }
 
 DynamicString_t* copy_private(const DynamicString_t *self) {
-    DynamicString_t* copy_str = (DynamicString_t*)malloc(sizeof(DynamicString_t));
+    DynamicString_t *copy_str = (DynamicString_t*)malloc(sizeof(DynamicString_t));
+
+    //malloc safety check
+    CHECK_ALLOC_RETURN_NULL(copy_str);
 
     //Shallow copy
     memcpy(copy_str, self, sizeof(DynamicString_t));
@@ -53,6 +63,12 @@ void append_str_private(DynamicString_t *self ,const char* str) {
     //Reallocate the old data and adds space for the new data
     self->data = realloc(self->data, self->size + str_size + 1);
 
+    //realloc safety check
+    if (self->data == NULL) {
+        PRINT_LINE_ERROR;
+        return;
+    }
+
     //Copy the new data on the newly allocated space
     //starting from the end of the old data.
     memcpy(self->data + self->size, str, str_size);
@@ -66,7 +82,10 @@ void append_str_private(DynamicString_t *self ,const char* str) {
 }
 
 DynamicString_t* init_dynamic_string(const char *str) {
-    DynamicString_t* new_str = (DynamicString_t*)malloc(sizeof(DynamicString_t));
+    DynamicString_t *new_str = (DynamicString_t*)malloc(sizeof(DynamicString_t));;
+
+    //malloc safety check
+    CHECK_ALLOC_RETURN_NULL(new_str);
 
     if (str != NULL) {
         new_str->self = new_str;
@@ -75,6 +94,7 @@ DynamicString_t* init_dynamic_string(const char *str) {
         new_str->alloc = strlen(str) + 1;
         new_str->size = strlen(str);
 
+        //Zero-initialize data
         new_str->data = (char*)calloc(new_str->alloc, sizeof(char));
         strncpy(new_str->data, str, new_str->size);
 
