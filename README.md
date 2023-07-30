@@ -8,9 +8,14 @@ This library contains a simple implementation of a dynamic string that can be in
 The following **functionality** is completed:
 
 DynamicString:
-* [x] getSize - returns the number of chars in the string.
-* [x] getStrImmutable - returns a const version of the data inside the string. 
-* [x] destStr - frees the heap allocated memory
+* [x] get_size - Returns the number of chars in the string.
+* [x] get_alloc - Returns the allocated size including null terminator
+* [x] get_str_immutable - Returns a const version of the data.
+* [x] get_str - Returns a non const version of the data. 
+* [x] copy - Allocates new memory and copies data. Returns pointer
+             to new memory.
+* [x] append_str - Reallocates memory for the old string and for the new                appending string. Appends string at the end.
+* [x] dest_str - Frees the heap allocated memory.
    
 
 **TO DO**
