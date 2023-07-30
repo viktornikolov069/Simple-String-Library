@@ -21,16 +21,18 @@ DynamicString:
 **TO DO**
 * [x] Add a copy function
 * [ ] Add a slice function
-* [ ] Add an append function
+* [X] Add an append function
 * [ ] Possibly add a reverse function (Returns the data in reverse order)
 * [ ] Create a shared library
 * [ ] Create a static library
 * [ ] Add unit tests. Try doing them in python.
 * [ ] Add comments and documentation. 
 * [ ] Add input verification in the functions.
-* [ ] Add NULL pointer checks where memory is allocated. 
+* [X] Add NULL pointer checks where memory is allocated. 
+* [ ] Replace standard string functions with their safer versions added in C11. 
 
 ## Notes
 
 * This library even though made in 'C' uses an object oriented approach or at least that is what I'm attempting to do.
+* I'm trying to keep the code safe and follow best practices as best as I can. I'm borrowing references from the Richard Reese "Understanding and Using C Pointers" book and other resources.
 * Naming convention is snake_case.
