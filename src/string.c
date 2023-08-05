@@ -46,6 +46,13 @@ int main() {
     printf("str_copy->size = %ld\n", str_copy->get_size(str_copy));
     printf("str_copy->alloc = %ld\n", str_copy->get_alloc(str_copy));
 
+    puts("Reverse a string\n");
+
+    str->reverse_str(str);
+    printf("str->reverse_str = %s\n", str->data);
+    
+
+
     str->dest_str(str);
     str_copy->dest_str(str_copy);
 }

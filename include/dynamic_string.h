@@ -20,6 +20,7 @@ typedef struct DynamicString {
     void (*dest_str)(SELF);
     struct DynamicString*(*copy)(SELF_CONST);
     void (*append_str)(SELF, const char*);
+    void (*reverse_str)(SELF);
 
 } DynamicString_t;
 
@@ -32,6 +33,8 @@ const char* get_str_immutable_private(SELF_CONST);
 char* get_str_private(SELF_CONST);
 
 void append_str_private(SELF, const char*);
+
+void reverse_str_private(SELF);
 
 void dest_str_private(SELF);
 

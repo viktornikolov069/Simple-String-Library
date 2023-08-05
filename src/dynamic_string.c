@@ -80,6 +80,21 @@ void append_str_private(DynamicString_t *self ,const char* str) {
     self->data[self->size] = '\0';
 }
 
+void reverse_string_private(DynamicString_t *self) {
+    char *end = self->data + self->size - 1;
+    char *start = self->data;
+    char temp = *start;
+
+    // start < end returns 1 == true until no longer true
+    while (start < end) {
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+}
+
 DynamicString_t* init_dynamic_string(const char *str) {
     DynamicString_t *new_str = (DynamicString_t*)malloc(sizeof(DynamicString_t));;
 
@@ -118,6 +133,7 @@ DynamicString_t* init_dynamic_string(const char *str) {
     new_str->dest_str = dest_str_private;
     new_str->copy = copy_private;
     new_str->append_str = append_str_private;
+    new_str->reverse_str = reverse_string_private;
 
     return new_str;
 }
